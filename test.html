@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Electronero</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #0b0b0b url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .lightning-flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 100;
+      animation: flashThunder 6s infinite;
+    }
+
+    @keyframes flashThunder {
+      0%, 97%, 100% { opacity: 0; }
+      98% { opacity: 0.6; }
+      99% { opacity: 0; }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: radial-gradient(circle at center, rgba(21, 21, 21, 0.5), rgba(0, 0, 0, 0.5));
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero img {
+      width: 150px;
+      animation: pulseGlow 2s infinite ease-in-out;
+      border-radius: 50%;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 15px #ffe600, 0 0 30px #ff00cc; }
+      50% { box-shadow: 0 0 30px #00ffff, 0 0 60px #ff00cc; }
+      100% { box-shadow: 0 0 15px #ffe600, 0 0 30px #ff00cc; }
+    }
+
+    .countdown {
+      margin-top: 40px;
+      font-size: 24px;
+      color: yellow;
+    }
+
+    .email-signup {
+      margin-top: 30px;
+    }
+
+    .email-signup input {
+      padding: 10px;
+      font-size: 16px;
+      width: 250px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .email-signup button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: yellow;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .roadmap {
+      padding: 80px 20px;
+      color: #ccc;
+    }
+
+    .timeline {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      margin-bottom: 40px;
+      border-left: 4px solid yellow;
+      padding-left: 20px;
+    }
+
+    .timeline-item h5 {
+      color: yellow;
+    }
+
+    @media (max-width: 768px) {
+      .timeline {
+        padding-left: 0;
+        border-left: none;
+      }
+
+      .timeline-item {
+        border-left: none;
+        border-top: 4px solid yellow;
+        padding-left: 0;
+        padding-top: 20px;
+        margin-left: 0;
+      }
+
+      .timeline-item::before {
+        content: none;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #000;
+      color: #666;
+    }
+    .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 20px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 18px;
+    width: 4px;
+    background: yellow;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 40px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    background-color: yellow;
+    border: 3px solid #0b0b0b;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .timeline-item .card {
+    background-color: #111;
+    color: #ccc;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .timeline {
+      padding-left: 20px;
+    }
+
+    .timeline::before {
+      left: 18px;
+    }
+
+    .timeline-item {
+      padding-left: 40px;
+    }
+
+    .timeline-item::before {
+      left: 10px;
+    }
+  } 
+  .card-title {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    color: yellow !important;
+  }
+
+  .list-group-item {
+    color: white;
+    font-size: 16px;
+  }
+  .list-group-item-text {
+    color: yellow !important;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+
+    z-index: 2 !important;
+  }
+  .hero-lightning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('lightning3.png') center center/cover no-repeat;
+    opacity: 0.4; /* adjust transparency */
+    pointer-events: none;
+    animation: flicker 1.5s infinite ease-in-out;
+    z-index: 1 !important;
+  }
+
+  @keyframes flicker {
+    0%, 66%, 100% { opacity: 0.3; }
+    33% { opacity: 0.6; }
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+  
+  <div class="lightning-flash"></div>
+  
+    <div class="hero-lightning"></div>
+  <div class="hero">
+    <h1>Electronero Network </h1>
+    <br>  
+      <img style="
+    z-index: 2 !important; width: 300px" src="https://electronero.org/assets/images/logo/sticker.webp" alt="Electronero" />
+      <br>
+      <br>
+      <hr>
+      <br>
+      <p>
+        
+      </p>
+      <div class="countdown" id="countdown">NEW RELEASE in ...</div>
+      <div class="community-cta mt-4">
+        <h5 class="text-light mb-3">Join The Community!</h5>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="https://t.me/electronero" target="_blank" class="btn btn-outline-info rounded-pill">
+            <i class="fab fa-telegram fa-lg me-2"></i> Telegram
+          </a>
+          <a href="https://twitter.com/_electronero" target="_blank" class="btn btn-outline-light rounded-pill">
+            <i class="fab fa-x-twitter fa-lg me-2"></i> X
+          </a>
+        </div>
+      </div>
+
+      
+  </div>
+
+      <br>
+      <hr>
+      <br>
+
+  <div class="container mb-5">
+
+    <div class="row text-center g-4 justify-content-center">
+
+      <br>
+      <h2>
+        Public Property | Open Source Projects
+      </h2>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="p-3 border rounded bg-dark bg-opacity-75 text-light h-100">
+          <h5>Web Wallet</h5>
+          <a href="https://webnero.electronero.org" class="stretched-link text-info text-decoration-none">Webnero</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="p-3 border rounded bg-dark bg-opacity-75 text-light h-100">
+          <h5>Source Code</h5>
+          <a href="https://github.com/electronero-project/electronero" class="stretched-link text-info text-decoration-none">GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="p-3 border rounded bg-dark bg-opacity-75 text-light h-100">
+          <h5>Wallet API</h5>
+          <a href="wallet_rpc.html" class="stretched-link text-info text-decoration-none">Wallet RPC Docs</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="p-3 border rounded bg-dark bg-opacity-75 text-light h-100">
+          <h5>Daemon API</h5>
+          <a href="daemon_rpc.html" class="stretched-link text-info text-decoration-none">Daemon RPC Docs</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+      <br>
+      <hr>
+      <br>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="container my-5">
+        <div class="card bg-dark text-light shadow-lg">
+          <div class="card-body">
+            <h4 class="card-title text-primary mb-4">Coin Info</h4>
+            <ul class="list-group list-group-flush text-light">
+              <img style="z-index: 2 !important; width: 120px" src="ETNX.png" alt="Electronero" />
+              <li class="list-group-item bg-dark border-secondary"><strong>Name:</strong> <span class="list-group-item-text">Electronero</span></li>
+              <li class="list-group-item bg-dark border-secondary"><strong>Symbol:</strong> <span class="list-group-item-text">ETNX</span></li>
+              <li class="list-group-item bg-dark border-secondary"><strong>Max Supply:</strong> <span class="list-group-item-text">Unlimited</span></li>
+              <li class="list-group-item bg-dark border-secondary">
+                <strong>Circulating Supply:</strong>
+                <span id="circulating-supply" class="list-group-item-text">Loading...</span>
+              </li>
+              <li class="list-group-item bg-dark border-secondary">
+                <strong>Market Cap:</strong>
+                <span id="market-cap" class="list-group-item-text">Loading...</span>
+              </li>
+              <li class="list-group-item bg-dark border-secondary"><strong>Source Code:</strong> <span class="list-group-item-text"><a class="list-group-item-text" href="https://github.com/electronero-project/electronero" target="_blank"><i class="fab fa-github fa-lg"></i>  Github</a></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="container my-5">
+        <div class="card bg-dark text-light shadow-lg">
+          <div class="card-body">
+            <h4 class="card-title text-primary mb-4">Coin Info</h4>
+            <ul class="list-group list-group-flush text-light">
+              <img style="z-index: 2 !important; width: 120px" src="ETNXP.png" alt="Electronero" />
+              <li class="list-group-item bg-dark border-secondary"><strong>Name:</strong> <span class="list-group-item-text">Electronero Pulse</span></li>
+              <li class="list-group-item bg-dark border-secondary"><strong>Symbol:</strong> <span class="list-group-item-text">ETNXP</span></li>
+              <li class="list-group-item bg-dark border-secondary"><strong>Max Supply:</strong> <span class="list-group-item-text">Unlimited</span></li>
+              <li class="list-group-item bg-dark border-secondary">
+                <strong>Circulating Supply:</strong>
+                <span id="circulating-supply-etnxp" class="list-group-item-text">Loading...</span>
+              </li>
+              <li class="list-group-item bg-dark border-secondary">
+                <strong>Market Cap:</strong>
+                <span id="market-cap-etnxp" class="list-group-item-text">Loading...</span>
+              </li>
+              <li class="list-group-item bg-dark border-secondary"><strong>Source Code:</strong> <span class="list-group-item-text"><a class="list-group-item-text" href="https://github.com/electronero-pulse/electroneropulse" target="_blank"><i class="fab fa-github fa-lg"></i>  Github</a></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <br>
+      <hr>
+      <br>
+
+  <div class="container my-5">
+    <h2 class="text-center text-light mb-4">Where to Trade <br> Electronero Network </h2>
+    <div class="row justify-content-center">
+      <!-- Example Exchange Card -->
+      <div class="col-md-4 mb-3">
+        <div class="card text-center bg-dark text-white border-success h-100">
+          <div class="card-body"><br>
+            <img src="tradeogre.png" alt="TradeOgre" width="240" class="mb-2">
+            <br><br>
+            <h5 class="card-title">TradeOgre</h5>
+            <p class="card-text">Trade ETNX/LTC and ETNXP/LTC pairs.<br><br> Trade Electronero Network with Litecoin.</p>
+            <a href="https://tradeogre.com/exchange/LTC-ETNX" target="_blank" class="btn btn-outline-success btn-sm">Trade LTC-ETNX</a>
+            <a href="https://tradeogre.com/exchange/LTC-ETNXP" target="_blank" class="btn btn-outline-success btn-sm">Trade LTC-ETNXP</a>
+          </div>
+        </div>
+      </div>
+      <!-- Add more exchanges below as needed -->
+      <div class="col-md-4 mb-3">
+        <div class="card text-center bg-dark text-white border-info h-100">
+          <div class="card-body">
+            <img src="https://gamex.electronero.org/images/gamexchange.png" alt="Xeggex" width="120" class="mb-2">
+            <h5 class="card-title">GameXchange</h5>
+            <p class="card-text">Trade ETNX/USDX or ETNXP/USDX pairs.<br> Trade Electronero Network with USDX.</p>
+            <a href="https://gamex.electronero.org/ETNX-USDX/" target="_blank" class="btn btn-outline-info btn-sm">Trade ETNX-USDX</a>
+            <a href="https://gamex.electronero.org/ETNXP-USDX/" target="_blank" class="btn btn-outline-info btn-sm">Trade ETNXP-USDX</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <br>
+      <hr>
+      <br>
+
+  <div class="container-fluid px-3 roadmap">
+    <h2 class="text-center mb-5">Roadmap</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2018 – Project Inception</h5>
+            <p>Forked from Monero and Electroneum with enhanced privacy and security patches.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2019 – Mobile & Web Wallets</h5>
+            <p>Released Android and Web light wallets for on‑the‑go payments.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2020 – RPC Libraries</h5>
+            <p>Node.js, PHP, Go and Python modules added for easy RPC integration.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2021 – EI-2.0 Smart Chain</h5>
+            <p>Smart Contracts, DeFi apps, Interoperability and Layer‑2 scaling research.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2022 – Multilingual UI</h5>
+            <p>Added translations and streamlined build scripts for all platforms.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2023 – Packaging Improvements</h5>
+            <p>Updated Docker images and RPC modules for easier deployment and integrations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2025 – XRC-20 Token Platform</h5>
+            <p>Robust token ecosystem accessible via CLI and RPC.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>2025 – Governance Upgrades</h5>
+            <p>Planned voting system and expanded token utilities.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>Future Development</h5>
+            <p>SFT Token Launch, creators can deploy Semi-Fungible Tokens</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="card bg-dark text-light">
+          <div class="card-body">
+            <h5>Future Development</h5>
+            <p>Encrypted Private Messaging System integrated with CLI and RPC</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="mb-2">
+      <a href="https://t.me/electronero" class="text-light me-3" target="_blank">
+        <i class="fab fa-telegram fa-lg"></i>
+      </a>
+      <a href="https://twitter.com/_electronero" class="text-light me-3" target="_blank">
+        <i class="fab fa-x-twitter fa-lg"></i>
+      </a>
+      <a href="mailto:support@electronero.org" class="text-light me-3" target="_blank">
+        <i class="fas fa-envelope fa-lg"></i>
+      </a>
+      <a href="https://github.com/electronero" target="_blank" class="text-light me-3">
+        <i class="fab fa-github fa-lg"></i>
+      </a>
+    </div>
+    <div>&copy; 2025 Electronero. By the community, for the community.</div><br>
+    <div>
+      <a href="https://v1.electronero.org/" class="link-light">V1</a> &middot;
+      <a href="https://v2.electronero.org/" class="link-light">V2</a> &middot;
+      <a href="https://v3.electronero.org/" class="link-light">V3</a>
+    </div>
+  </footer>
+
+  </div>
+  <script>
+    // Replace these values dynamically (e.g., from API)
+    const circulating = "Loading..";
+    const marketCap = "Loading..";
+    document.getElementById('circulating-supply').textContent = circulating;
+    document.getElementById('market-cap').textContent = marketCap;
+    let marketLower = "etnx";
+    fetch('https://gamex.electronero.org/stats/'+marketLower+'_stats.php')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('circulating-supply').innerText = data.circulating+" ETNX";
+        let circulatingNumber = parseFloat(data.circulating.replace(/,/g, ''));
+        let marketCap = circulatingNumber * parseFloat(data.market);
+        document.getElementById('market-cap').innerText = "$"+marketCap.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  </script>
+
+  <script>
+    // Replace these values dynamically (e.g., from API)
+    const circulating_etnxp = "Loading..";
+    const marketCap_etnxp = "Loading..";
+    document.getElementById('circulating-supply-etnxp').textContent = circulating_etnxp;
+    document.getElementById('market-cap-etnxp').textContent = marketCap_etnxp;
+    let marketLower_etnxp = "etnxp";
+    fetch('https://gamex.electronero.org/stats/'+marketLower_etnxp+'_stats.php')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('circulating-supply-etnxp').innerText = data.circulating+" ETNXP";
+        let circulatingNumber = parseFloat(data.circulating.replace(/,/g, ''));
+        let marketCap = circulatingNumber * parseFloat(data.market);
+        document.getElementById('market-cap-etnxp').innerText = "$"+marketCap.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  </script>
+
+
+  <script>
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 10);
+    const countdownEl = document.getElementById('countdown');
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate.getTime() - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownEl.innerHTML = "NEW RELEASE in " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }, 1000);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
